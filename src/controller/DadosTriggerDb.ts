@@ -6,6 +6,7 @@ import fs from 'fs';
 export async function baseFormula (req: Request, res: Response) {
     try{
         let id: number = req.body.id as number;
+        console.log(id);
         console.log(req.body.cliente as string);
         console.log(req.body.acao as string);
 
