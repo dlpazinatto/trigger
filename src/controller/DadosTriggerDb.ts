@@ -6,10 +6,9 @@ import fs from 'fs';
 export async function baseFormula (req: Request, res: Response) {
     try{
         let id: number = req.body.id as number;
-        console.log(id);
-        console.log(req.body.cliente as string);
-        console.log(req.body.acao as string);
-
+        
+        console.log(`ID: ${id}. Cliente: ${req.body.cliente as string}. Ação: ${req.body.acao as string}\n`);
+        
         res.status(200);
         res.json([{
             status: 'Processado',
