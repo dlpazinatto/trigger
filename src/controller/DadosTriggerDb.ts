@@ -6,7 +6,7 @@ import fs from 'fs';
 export async function baseFormula (req: Request, res: Response) {
     try{
         let id: number = req.body.id as number;
-        enviaDados(id);
+        await enviaDados(id);
         res.status(200);
         res.json([{
             status: 'Processado',
