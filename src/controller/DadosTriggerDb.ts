@@ -11,7 +11,7 @@ export async function baseFormula (req: Request, res: Response) {
         let id_processo = Math.floor((new Date().getTime() / 1000));
         let chave: string = (id_processo.toString() + id.toString().padStart(10,'0'));
         
-        let inicio = tz.format("YYYY-MM-DD HH:mm:ss").toString();
+        let inicio = moment().utcOffset(-180).format("YYYY-MM-DD HH:mm:ss").toString();
         
         console.log(`${inicio} ID: ${id}. Cliente: ${req.body.cliente as string}. Ação: ${req.body.acao as string} ID processo: ${chave}\n`);
         
@@ -38,10 +38,10 @@ async function enviaDados(id:number, id_processo: string, inicio:string) {
             id: id,
             status: 'processado'
         }))
-        console.log( `${tz.format("YYYY-MM-DD HH:mm:ss").toString()} Processado ID: ${id} Processo: ${id_processo} que foi iniciado as ${inicio}` );
+        console.log( `${moment().utcOffset(-180).format("YYYY-MM-DD HH:mm:ss").toString()} Legado retornou 200 calculo ID: ${id} Processo: ${id_processo} que foi iniciado as ${inicio}` );
         
     } catch (error) {
-        console.log(`${tz.format("YYYY-MM-DD HH:mm:ss").toString()} Erro:  ${error}`)
+        console.log(`${moment().utcOffset(-180).format("YYYY-MM-DD HH:mm:ss").toString()} Erro:  ${error}`)
     }
     
 }
