@@ -7,7 +7,7 @@ export async function baseFormula (req: Request, res: Response) {
     try{
         let id: number = req.body.id as number;
         
-        console.log(`${moment().format("YYYY-MM-DD hh:mm:ss").toString()} ID: ${id}. Cliente: ${req.body.cliente as string}. Ação: ${req.body.acao as string}\n`);
+        console.log(`${moment().format("YYYY-MM-DD HH:mm:ss").toString()} ID: ${id}. Cliente: ${req.body.cliente as string}. Ação: ${req.body.acao as string}\n`);
         
         res.status(200);
         res.json([{
@@ -31,9 +31,9 @@ async function enviaDados(id:number) {
             id: id,
             status: 'processado'
         }))
-        console.log( `${moment().format("YYYY-MM-DD hh:mm:ss").toString()} Processado ID: ${id}` );
+        console.log( `${moment().format("YYYY-MM-DD HH:mm:ss").toString()} Processado ID: ${id}` );
     } catch (error) {
-        console.log(`${moment().format("YYYY-MM-DD HH:MM:SS").toString()} Erro:  ${error}`)
+        console.log(`${moment().format("YYYY-MM-DD HH:mm:ss").toString()} Erro:  ${error}`)
     }
     
 }
