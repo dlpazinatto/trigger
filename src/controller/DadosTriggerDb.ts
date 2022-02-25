@@ -1,13 +1,13 @@
 import moment from 'moment';
 import { Request, Response } from 'express';
 import legado from './EnviaDadosRest';
-import fs from 'fs';
+
 
 export async function baseFormula (req: Request, res: Response) {
     try{
         let id: number = req.body.id as number;
         
-        console.log(`ID: ${id}. Cliente: ${req.body.cliente as string}. Ação: ${req.body.acao as string}\n`);
+        console.log(`${moment().format("YYYY-MM-DD hh:mm:ss").toString()} ID: ${id}. Cliente: ${req.body.cliente as string}. Ação: ${req.body.acao as string}\n`);
         
         res.status(200);
         res.json([{
@@ -31,16 +31,9 @@ async function enviaDados(id:number) {
             id: id,
             status: 'processado'
         }))
-        console.log( "Processado ID: "+id);
+        console.log( `${moment().format("YYYY-MM-DD hh:mm:ss").toString()} Processado ID: ${id}` );
     } catch (error) {
-        console.log('Erro: '+error)
+        console.log(`${moment().format("YYYY-MM-DD HH:MM:SS").toString()} Erro:  ${error}`)
     }
     
-}
-
-async function geraArquivo(id:number) {
-    const dataatualm  = moment().format("YYYY-MM-DD").toString();
-    const horaatualm  = moment().format("HH:MM:SS").toString();
-    let arquivo = 'data'+'-'+dataatualm+'.log';
-        
 }
