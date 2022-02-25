@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import legado from './EnviaDadosRest';
 
 
+
 const tz = moment().utcOffset(-180);
 
 export async function baseFormula (req: Request, res: Response) {
@@ -22,6 +23,7 @@ export async function baseFormula (req: Request, res: Response) {
             chave
         }]);
         await enviaDados(id, chave, inicio);
+        //testeTempo(inicio);
     }catch(error){
 
         res.status(200);
@@ -38,10 +40,28 @@ async function enviaDados(id:number, id_processo: string, inicio:string) {
             id: id,
             status: 'processado'
         }))
-        console.log( `${moment().utcOffset(-180).format("YYYY-MM-DD HH:mm:ss").toString()} Legado retornou 200 calculo ID: ${id} Processo: ${id_processo} que foi iniciado as ${inicio}` );
+        let depois = moment().utcOffset(-180).format("YYYY-MM-DD HH:mm:ss").toString();
+
+        console.log( `${depois} Legado retornou 200 calculo ID: ${id} Processo: ${id_processo} que foi iniciado as ${inicio}` );
+        console.log(`Tempo total: ${moment(depois).diff(inicio, 'seconds')} segundos.`)
         
     } catch (error) {
         console.log(`${moment().utcOffset(-180).format("YYYY-MM-DD HH:mm:ss").toString()} Erro:  ${error}`)
     }
     
 }
+
+async function testeTempo(inicio: string){
+    let antes = moment(inicio);
+    await sleep(5000);   
+    let depois = moment().utcOffset(-180).format("YYYY-MM-DD HH:mm:ss");
+    let diferenca = moment(depois).diff(inicio, 'seconds');
+    console.log(`Diferença: ${diferenca} segundos`)   
+
+}
+
+function sleep(ms: number) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
