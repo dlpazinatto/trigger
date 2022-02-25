@@ -1,13 +1,16 @@
 import moment from 'moment';
+import tz from 'moment-timezone';
 import { Request, Response } from 'express';
 import legado from './EnviaDadosRest';
+
 
 
 export async function baseFormula (req: Request, res: Response) {
     try{
         let id: number = req.body.id as number;
         
-        console.log(`${moment().format("YYYY-MM-DD HH:mm:ss").toString()} ID: ${id}. Cliente: ${req.body.cliente as string}. Ação: ${req.body.acao as string}\n`);
+        console.log(`${moment().utcOffset(-180).format("YYYY-MM-DD HH:mm:ss").toString()} ID: ${id}. Cliente: ${req.body.cliente as string}. Ação: ${req.body.acao as string}\n`);
+        //.tz('America/Sao_paulo')
         
         res.status(200);
         res.json([{
@@ -19,7 +22,7 @@ export async function baseFormula (req: Request, res: Response) {
 
         res.status(200);
         res.json([{
-            status: 'erro ao processar'
+            status: 'erro ao processar'+error,
         }])    
     }
     
@@ -31,9 +34,10 @@ async function enviaDados(id:number) {
             id: id,
             status: 'processado'
         }))
-        console.log( `${moment().format("YYYY-MM-DD HH:mm:ss").toString()} Processado ID: ${id}` );
+        console.log( `${moment().utcOffset(-180).format("YYYY-MM-DD HH:mm:ss").toString()} Processado ID: ${id}` );
+        //.tz('America/Sao_paulo')
     } catch (error) {
-        console.log(`${moment().format("YYYY-MM-DD HH:mm:ss").toString()} Erro:  ${error}`)
+        console.log(`${moment().utcOffset(-180).format("YYYY-MM-DD HH:mm:ss").toString()} Erro:  ${error}`)
     }
     
 }
