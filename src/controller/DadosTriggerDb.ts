@@ -22,7 +22,7 @@ export async function baseFormula (req: Request, res: Response) {
             id,
             chave
         }]);
-        await enviaDados(id, chave, inicio);
+        //await enviaDados(id, chave, inicio);
         //testeTempo(inicio);
     }catch(error){
 
