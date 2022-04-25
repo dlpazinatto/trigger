@@ -15,7 +15,7 @@ export async function baseFormula (req: Request, res: Response) {
         let inicio = moment().utcOffset(-180).format("YYYY-MM-DD HH:mm:ss").toString();
         
         console.log(`${inicio} ID: ${id}. Cliente: ${req.body.cliente as string}. Ação: ${req.body.acao as string} ID processo: ${chave}\n`);
-        
+        console.log('Jenkins');
         res.status(200);
         res.json([{
             status: 'Processado',
